@@ -53,7 +53,7 @@ function TodoListCard() {
         <React.Fragment>
             <AddItemForm onNewItem={onNewItem} />
             {items.length === 0 && (
-                <p className="text-center">No items yet! Add one above!</p>
+                <p className="text-center">You have no todo items yet! Add one above!</p>
             )}
             {items.map(item => (
                 <ItemDisplay
@@ -176,4 +176,27 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
     );
 }
 
+function newFeature() {
+    const { Container, Row, Col } = ReactBootstrap;
+    const [dateTime, setDateTime] = React.useState(null);
+
+    const displayDateTime = () => {
+        const now = new Date();
+        setDateTime(now.toString());
+    };
+
+    return (
+        <Container>
+            <Row>
+                <Col md={{ offset: 3, span: 6 }}>
+                    <TodoListCard />
+                    <button onClick={displayDateTime}>Display Date and Time</button>
+                    <div>{dateTime}</div>
+                </Col>
+            </Row>
+        </Container>
+    );
+}
+
 ReactDOM.render(<App />, document.getElementById('root'));
+
